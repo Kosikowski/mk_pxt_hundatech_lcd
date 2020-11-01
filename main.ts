@@ -64,7 +64,7 @@ namespace mkSerialLCD {
      * Darws a rectangle
      */
     //% blockId=mkSerialLCDDrawRectangle
-    //% block=Draw rect at x: &Xr y: &Yr width: &Wr height: &Hr colour: &Colour"
+    //% block="Draw rectangle at x: &Xr y: &Yr width: &Wr height: &Hr colour: &Colour"
     export function DrawRectangle(Xr: number, Yr: number, Wr: number, Hr: number, Colour: number): void {
         serial.writeString("rect " + Xr.toString() + "," + Yr.toString() + "," + Wr.toString() + "," + Hr.toString() + "," + Colour.toString() + "\r\n");
     }
