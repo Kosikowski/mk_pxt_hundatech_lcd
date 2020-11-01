@@ -25,6 +25,20 @@ declare const enum SLCDColour {
     Grey = 33840 // 50 shades
 }
 
+declare const enum FontSize {
+    //% block="Size16"
+    Size16 = 16,
+    
+    //% block="Size24"
+    Size24 = 24,
+    
+    //% block="Size32"
+    Size32 = 32,
+
+    //% block="Size64"
+    Size64 = 64,
+}
+
 namespace mkSerialLCD {
 
     /**
@@ -107,5 +121,13 @@ namespace mkSerialLCD {
         serial.writeString("line " + XL.toString() + "," + YL.toString() + "," + XLe.toString() + "," + YLe.toString() + "," + Colour.toString() + "\r\n");
     }
     
+    //% blockId=mkSerialLCDDisplayTextAtPosition
+    //% block="Display String at X %X Y %Y colour %Colour background Color %bColour string %ch size %size"
+    //% X.min=1 X.max=220 Y.min=1 Y.max=176 inlineInputMode=inline
+    //% Colour.min=0 Colour.max=65535 bColour.min=0 bColour.max=65535
+    export function DisplayString(X: number, Y: number, Colour: number, bColour: number, ch: string, size: FontSize): void {
+        serial.writeString("ds"+ size.toString() + " " + X.toString() + "," + Y.toString() + "," + Colour.toString() + "," + bColour.toString() + "," + ch + "\r\n");
+    }
+
     
 }
