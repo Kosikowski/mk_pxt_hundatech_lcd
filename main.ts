@@ -48,10 +48,8 @@ namespace mkSerialLCD {
     //% block="Init LCD"
     export function initSLCD(): void {
         serial.redirect(SerialPin.P1, SerialPin.P2, 57600)
-        serial.setRxBufferSize(605)
-        serial.setTxBufferSize(605)
-        ClearScreen(0)
-        ClearScreen(0)
+        serial.setRxBufferSize(220*176)
+        serial.setTxBufferSize(220*176)
     }
     
     /**
