@@ -1,3 +1,7 @@
+/**
+ * Created by Mateusz Kosikowski, Ph.D.
+ */
+
 declare const enum SLCDColour {
     //% block="White"
     White = 65535,
@@ -64,11 +68,7 @@ namespace mkSerialLCD {
         serial.writeString("sebl " + Level.toString() + "\r\n");
     }
 
-    // Xr.min=1 Xr.max=220 Yr.min=1 Yr.max=176    
-    // Colour.min=0 Colour.max=65535 inlineInputMode=inline
-    // Wr.min=1 Wr.max=220 Hr.min=1 Hr.max=176 
-    // block="Draw Rectangle|Xstart %Xstart2|Ystart %Ystart2|Width %Xend2|Height %Yend2|Color %Color"
-    
+
     /**
      * Darws a rectangle
      */
@@ -86,8 +86,17 @@ namespace mkSerialLCD {
     //% Xr.min=1 Xr.max=220 Yr.min=1 Yr.max=176    
     //% Wr.min=1 Wr.max=220 Hr.min=1 Hr.max=176
     //% Colour.min=0 Colour.max=65535 inlineInputMode=inline
-    export function DrawFill(Xr: number, Yr: number, Wr: number, Hr: number, Colour: number): void {
+    export function DrawRectangleFill(Xr: number, Yr: number, Wr: number, Hr: number, Colour: number): void {
         serial.writeString("rect " + Xr.toString() + "," + Yr.toString() + "," + Wr.toString() + "," + Hr.toString() + "," + Colour.toString() + "\r\n");
     }
+
+    //% block="Draw Point at X %X Y %Y Colour %Colour"
+    //% X.min=1 X.max=220 Y.min=1 Y.max=176
+    //% Colour.min=0 Colour.max=65535 inlineInputMode=inline
+    export function DrawPoint(X: number, Y: number, Colour: number): void {
+        DrawRectangleFill(X, Y, 1, 1, Colour)
+    }
+
+    
     
 }
