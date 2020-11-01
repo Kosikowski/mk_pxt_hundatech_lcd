@@ -64,6 +64,15 @@ namespace mkSerialLCD {
     }
 
     /**
+      * RGB to  RGB565 colurs converteer
+     */
+    //% blockId=mkSerialLCDClearScreenRGB565
+    //% block="red %red green %green blue %blue"
+    export function rgb565(red: number, green: number, blue: number): number {
+        return ((red) << 11) | ((green) << 5) | (blue);
+    }
+
+    /**
      * Clear the LCD
      */
     //% blockId=mkSerialLCDClearScreen
@@ -101,7 +110,7 @@ namespace mkSerialLCD {
     //% Wr.min=1 Wr.max=220 Hr.min=1 Hr.max=176
     //% Colour.min=0 Colour.max=65535 inlineInputMode=inline
     export function DrawRectangleFill(Xr: number, Yr: number, Wr: number, Hr: number, Colour: number): void {
-        serial.writeString("rect " + Xr.toString() + "," + Yr.toString() + "," + Wr.toString() + "," + Hr.toString() + "," + Colour.toString() + "\r\n");
+        serial.writeString("fill " + Xr.toString() + "," + Yr.toString() + "," + Wr.toString() + "," + Hr.toString() + "," + Colour.toString() + "\r\n");
     }
 
     //% blockId=mkSerialLCDDrawPoint
@@ -126,8 +135,38 @@ namespace mkSerialLCD {
     //% X.min=1 X.max=220 Y.min=1 Y.max=176 inlineInputMode=inline
     //% Colour.min=0 Colour.max=65535 bColour.min=0 bColour.max=65535
     export function DisplayString(X: number, Y: number, Colour: number, bColour: number, ch: string, size: FontSize): void {
-        serial.writeString("ds"+ size.toString() + " " + X.toString() + "," + Y.toString() + "," + Colour.toString() + "," + bColour.toString() + "," + ch + "\r\n");
+        //serial.writeString("ds16 " + x.toString() + "," + y.toString() + "," + fColor.toString() + "," + bColor.toString() + "," + ch + "\r\n");
+        const s = "ds" + size.toString() + " " + X.toString() + "," + Y.toString() + "," + Colour.toString() + "," + bColour.toString() + "," 
+        serial.writeString(s + ch + "\r\n");
     }
 
+
+    //% block="Draw Circle center at X %X Y %Y Radius %Radius Color %Color"
+    //% X.min=1 X.max=176 Y.min=1 Y.max=176
+    //% Radius.min=0 Radius.max=176
+    //% Colour.min=0 Colour.max=65535 inlineInputMode=inline
+    export function DrawCircle(X: number, Y: number, Radius: number, Colour: number): void {
+        serial.writeString("cir " + X.toString() + "," + Y.toString() + "," + Radius.toString() + "," + Colour.toString() + "\r\n");
+    }
+
+    //% block="Draw Filled Circle center at X %X Y %Y Radius %Radius Color %Color"
+    //% X.min=1 X.max=176 Y.min=1 Y.max=176
+    //% Radius.min=0 Radius.max=176
+    //% Colour.min=0 Colour.max=65535 inlineInputMode=inline
+    export function DrawFilledCircle(X: number, Y: number, Radius: number, Colour: number): void {
+        serial.writeString("cirf " + X.toString() + "," + Y.toString() + "," + Radius.toString() + "," + Colour.toString() + "\r\n");
+    }
+
+    /**
+     * Display BMP from file on TF card
+     */
+    //% block="Display BMP X %X Y %Y BMP name %name"
+    //% X.min=1 X.max=220 Y.min=1 Y.max=176 
+    export function DisplayBMP(X: number, Y: number, name: string): void {
+        let notEmpty = name.length;
+        if (notEmpty) {
+            serial.writeString("pic " + X.toString() + "," + Y.toString() + "," + name + "\r\n");
+        }
+    }
     
 }
