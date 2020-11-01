@@ -40,7 +40,7 @@ namespace mkSerialLCD {
      * Converts the color name to a number
      */
     //% blockId=mkSerialLCDCLcdColour
-    //% block="Colour &c"
+    //% block="%c"
     export function LcdColour(c: SLCDColour): number {
         return c;
     }
@@ -64,7 +64,7 @@ namespace mkSerialLCD {
      * Darws a rectangle
      */
     //% blockId=mkSerialLCDDrawRectangle
-    //% block=Draw rect at x: &Xr y: &Yr width: &Wr height: &Hr
+    //% block=Draw rect|X: %Xr|Y %Yr|Width %Wr|Height %Hr|Colour %Colour"
     export function DrawRectangle(Xr: number, Yr: number, Wr: number, Hr: number, Colour: number): void {
         serial.writeString("rect " + Xr.toString() + "," + Yr.toString() + "," + Wr.toString() + "," + Hr.toString() + "," + Colour.toString() + "\r\n");
     }
