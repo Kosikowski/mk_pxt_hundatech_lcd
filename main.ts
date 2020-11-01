@@ -90,6 +90,7 @@ namespace mkSerialLCD {
         serial.writeString("rect " + Xr.toString() + "," + Yr.toString() + "," + Wr.toString() + "," + Hr.toString() + "," + Colour.toString() + "\r\n");
     }
 
+    //% blockId=mkSerialLCDDrawPoint
     //% block="Draw Point at X %X Y %Y Colour %Colour"
     //% X.min=1 X.max=220 Y.min=1 Y.max=176
     //% Colour.min=0 Colour.max=65535 inlineInputMode=inline
@@ -97,6 +98,14 @@ namespace mkSerialLCD {
         DrawRectangleFill(X, Y, 1, 1, Colour)
     }
 
+    //% blockId=mkSerialLCDDrawLine
+    //% block="Draw Line from X %XL Y %YL to X %XLe Y %YLe Color %Colour"
+    //% XL.min=1 XL.max=220 YL.min=1 YL.max=176    
+    //% XLe.min=1 XLe.max=220 YLe.min=1 YLe.max=176
+    //% Colour.min=0 Colour.max=65535 inlineInputMode=inline
+    export function DrawLine(XL: number, YL: number, XLe: number, YLe: number, Colour: number): void {
+        serial.writeString("line " + XL.toString() + "," + YL.toString() + "," + XLe.toString() + "," + YLe.toString() + "," + Colour.toString() + "\r\n");
+    }
     
     
 }
