@@ -81,5 +81,13 @@ namespace mkSerialLCD {
         serial.writeString("rect " + Xr.toString() + "," + Yr.toString() + "," + Wr.toString() + "," + Hr.toString() + "," + Colour.toString() + "\r\n");
     }
 
+    //% blockId=mkSerialLCDDrawRectangleFill
+    //% block="Draw rectangle fill at X %Xr Y %Yr Width %Wr Height %Hr Colour %Colour"
+    //% Xr.min=1 Xr.max=220 Yr.min=1 Yr.max=176    
+    //% Wr.min=1 Wr.max=220 Hr.min=1 Hr.max=176
+    //% Colour.min=0 Colour.max=65535 inlineInputMode=inline
+    export function DrawFill(Xr: number, Yr: number, Wr: number, Hr: number, Colour: number): void {
+        serial.writeString("rect " + Xr.toString() + "," + Yr.toString() + "," + Wr.toString() + "," + Hr.toString() + "," + Colour.toString() + "\r\n");
+    }
     
 }
