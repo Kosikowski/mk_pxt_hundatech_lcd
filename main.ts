@@ -26,16 +26,16 @@ declare const enum SLCDColour {
 }
 
 declare const enum FontSize {
-    //% block="Size16"
+    //% block="16"
     Size16 = 16,
     
-    //% block="Size24"
+    //% block="24"
     Size24 = 24,
     
-    //% block="Size32"
+    //% block="32"
     Size32 = 32,
 
-    //% block="Size64"
+    //% block="64"
     Size64 = 64,
 }
 
@@ -48,8 +48,8 @@ namespace mkSerialLCD {
     //% block="Init LCD"
     export function initSLCD(): void {
         serial.redirect(SerialPin.P1, SerialPin.P2, 57600)
-        serial.setRxBufferSize(128)
-        serial.setTxBufferSize(128)
+        serial.setRxBufferSize(605)
+        serial.setTxBufferSize(605)
         ClearScreen(0)
         ClearScreen(0)
     }
