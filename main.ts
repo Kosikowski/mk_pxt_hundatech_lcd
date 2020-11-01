@@ -50,22 +50,36 @@ namespace mkSerialLCD {
      */
     //% blockId=mkSerialLCDClearScreen
     //% block="Clear Lcd Screen:|Color %Color"
-    //% Color.min=0 Color.max=65535
+    //% SLCDColour.min=0 SLCDColour.max=65535
     export function ClearScreen(SLCDColour: number): void {
         serial.writeString("cls " + SLCDColour.toString() + "\r\n");
     }
 
-    // Xend2.min=1 Xend2.max=160 Yend2.min=1 Yend2.max=128
-    // Color.min=0 Color.max=65535 inlineInputMode=inline
+    /**
+     * Sets back light level (0-100)
+     */
+    //% block="Set back light level %Lev"
+    //% Level.min=0 Level.max=100
+    export function LCD_SetBL(Level: number): void {
+        serial.writeString("sebl " + Level.toString() + "\r\n");
+    }
+
+    // Xr.min=1 Xr.max=220 Yr.min=1 Yr.max=176    
+    // Colour.min=0 Colour.max=65535 inlineInputMode=inline
+    // Wr.min=1 Wr.max=220 Hr.min=1 Hr.max=176 
     // block="Draw Rectangle|Xstart %Xstart2|Ystart %Ystart2|Width %Xend2|Height %Yend2|Color %Color"
-    // Xstart2.min=1 Xstart2.max=160 Ystart2.min=1 Ystart2.max=128 
     
     /**
      * Darws a rectangle
      */
     //% blockId=mkSerialLCDDrawRectangle
     //% block="Draw rectangle at X %Xr Y %Yr Width %Wr Height %Hr Colour %Colour"
+    //% Xr.min=1 Xr.max=220 Yr.min=1 Yr.max=176    
+    //% Wr.min=1 Wr.max=220 Hr.min=1 Hr.max=176
+    //% Colour.min=0 Colour.max=65535 inlineInputMode=inline
     export function DrawRectangle(Xr: number, Yr: number, Wr: number, Hr: number, Colour: number): void {
         serial.writeString("rect " + Xr.toString() + "," + Yr.toString() + "," + Wr.toString() + "," + Hr.toString() + "," + Colour.toString() + "\r\n");
     }
+
+    
 }
