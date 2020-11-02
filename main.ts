@@ -42,14 +42,16 @@ declare const enum FontSize {
 namespace mkSerialLCD {
 
     /**
-     * Initalize the LCD
+     * Initalize the LCD, there is a delay 1000ms before init happens
+     * as it was observed that the LCD behaves unexpectedly when initialized too soon.
      */
     //% blockId=mkSerialLCDinitializeLCD
     //% block="Init LCD"
     export function initSLCD(): void {
+        basic.pause(1000)
         serial.redirect(SerialPin.P1, SerialPin.P2, 57600)
-        serial.setRxBufferSize(220*176)
-        serial.setTxBufferSize(220*176)
+        serial.setRxBufferSize(64)
+        serial.setTxBufferSize(64)
     }
     
     /**
