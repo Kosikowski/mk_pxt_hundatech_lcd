@@ -1,5 +1,6 @@
 {
     "name": "MK_PXT_HUNDATECH_LCD",
+    "version": "1.0.0",
     "description": "",
     "dependencies": {
         "core": "*",
